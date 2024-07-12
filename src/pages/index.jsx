@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Navbar from "@/components/navbar";
+
 export default function Home() {
   //RETIRAR DINHEIRO
   const [retirar, setRetirar] = useState(0)
@@ -48,28 +50,29 @@ export default function Home() {
   
   return (
     <main>
+      <Navbar/>
       <h1>Carteira</h1>
       <div>
         <p>Saldo</p>
         <div id="saldo">
 
         </div>
-        <button onClick={consSaldo}>Saldo</button>
+        <button className="botao" onClick={consSaldo}>Saldo</button>
       </div>
       <div>
         Deposito:<input type="number" value={deposito} onChange={handleChange} max={200} min={1}></input>
         <p>O total de deposito é:{deposito},00</p>
-        <button onClick={handleDeposito}>Depositar</button>
+        <button className="botao" onClick={handleDeposito}>Depositar</button>
       </div>
       <div>
         Retirar:<input type="number" value={retirar} onChange={handleRetirar} max={200} min={1}></input>
         <p>Retirar R${retirar},00</p>
-        <button onClick={handlePag}>Retirar</button>
+        <button className="botao" onClick={handlePag}>Retirar</button>
       </div>
       <section>
         <h1>historico</h1>
-        <button onClick={mostrar}>mostrar</button>
-        <button>x</button>
+        <button className="botao" onClick={mostrar}>mostrar</button>
+        
         <div id="historicoDeposito" className="esconder">Aqui esta seu historico</div>
       </section>
 
