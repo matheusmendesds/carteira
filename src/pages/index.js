@@ -1,15 +1,24 @@
 import React, { useState } from "react";
 export default function Home() {
-  const [saldo, setSaldo] = useState(0);
-  const [deposito, setDeposito] = useState(0)
+  //RETIRAR DINHEIRO
   const [retirar, setRetirar] = useState(0)
+  function handleRetirar(e) {
+    setRetirar(e.target.value);
+  }
+  //Função para retirar dinheiro
+  function handlePag(e) {
+    setSaldo(saldo - Number(retirar))
+    e.preventDefault();
+    const histDep = document.getElementById('historicoDeposito')
+    histDep.innerHTML += `<p>Você retirou R$${retirar}</p>`
+    alert(`Você retirou R$${retirar},00`)
+  }
+
+  //DEPOSITO DINHEIRO
+  const [deposito, setDeposito] = useState(0)
   //Função que acompanha a mudança da variavel Deposito
   function handleChange(e) {
     setDeposito(e.target.value);
-  }
-
-  function handleRetirar(e) {
-    setRetirar(e.target.value);
   }
 
   //Função para somar o Deposito com o saldo
@@ -18,18 +27,23 @@ export default function Home() {
     e.preventDefault();
     const histDep = document.getElementById('historicoDeposito')
     histDep.innerHTML += `<p>Você depositou R$${deposito}</p>`
+    alert(`Você depositou R$${deposito},00`)
   }
 
-  function handlePag(e) {
-    setSaldo(saldo - Number(retirar))
-    e.preventDefault();
-    const histDep = document.getElementById('historicoDeposito')
-    histDep.innerHTML += `<p>Você retirou R$${retirar}</p>`
-  }
-
+  //CONSULTAR SALDO
+  const [saldo, setSaldo] = useState(0);
+  //Função para consultar seu saldo
   function consSaldo() {
     const consSaldo = document.getElementById('saldo')
     consSaldo.innerHTML = `O seu saldo é R$${saldo},00`
+  }
+
+  //HISTORICO DE TRANSAÇÕES
+  //Função para mostrar historico de depositos e pagamentos/
+  function mostrar() {
+    const mostrarDep = document.querySelector('#historicoDeposito')
+    mostrarDep.classList.toggle("esconder")
+    
   }
   
   return (
@@ -38,7 +52,7 @@ export default function Home() {
       <div>
         <p>Saldo</p>
         <div id="saldo">
-        
+
         </div>
         <button onClick={consSaldo}>Saldo</button>
       </div>
@@ -52,12 +66,14 @@ export default function Home() {
         <p>Retirar R${retirar},00</p>
         <button onClick={handlePag}>Retirar</button>
       </div>
-      <div id="historicoDeposito">
-        Aqui esta seu historico
-      </div>
+      <section>
+        <h1>historico</h1>
+        <button onClick={mostrar}>mostrar</button>
+        <button>x</button>
+        <div id="historicoDeposito" className="esconder">Aqui esta seu historico</div>
+      </section>
+
     </main>
   )
-  function name(params) {
-    
-  }
+  
 }

@@ -8,4 +8,13 @@ button {
     background-color: black;
     color: white;
     margin: 10px;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+button:hover {
+    background-color: rgba(0, 0, 0, 0.418);
+}
+.esconder {
+    display: none;
 }
