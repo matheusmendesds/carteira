@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Quicksand , Zilla_Slab} from 'next/font/google'
+import { Quicksand } from 'next/font/google'
 import Image from "next/image";
+import Link from "next/link";
 
 const quicksand = Quicksand({
   weight: '400',
@@ -70,18 +71,19 @@ export default function Home() {
   
   return (
     <>
-        <section>
+        <section className="ml-2 text-center">
+          <h1 className=" text-md text-white md:text-2xl">Escolha sua operação</h1>
           <div>
-            <button onClick={() => operar(1)} className="btnInicio"><Image src="/images/saldo.png" width={40} height={40} className="imagem"/>Saldo</button>
-            <button onClick={() => operar(2)} className="btnInicio"><Image src="/images/dinheiro.png" width={40} height={40} className="imagem"/>Depositar</button>
-            <button onClick={() => operar(3)} className="btnInicio"><Image src="/images/retirar.png" width={40} height={40} className="imagem"/>Retirar</button>
-            <button onClick={() => operar(4)} className="btnInicio"><Image src="/images/historico.png" width={40} height={40} className="imagem"/> Sua Conta</button>
+            <button onClick={() => operar(1)} className="btnInicio"><Image src="/images/imgnav.png" width={40} height={40} alt="Saldo" className="imagem"/>Saldo</button>
+            <button onClick={() => operar(2)} className="btnInicio"><Image src="/images/dinheiro12.png" width={40} height={40} alt="Deposito" className="imagem"/>Depositar</button>
+            <button onClick={() => operar(3)} className="btnInicio"><Image src="/images/retirar12.png" width={40} height={40} alt="Retirar" className="imagem"/>Retirar</button>
+            <button onClick={() => operar(4)} className="btnInicio"><Image src="/images/historico123.png" width={40} height={40} alt="Historico"className="imagem"/> Sua Conta</button>
           </div>
 
         </section>
 
-        <section className=" border-2 border-slate-950 bg-gray-500 ">
-          <h1 className="text-center text-3xl">Sua operação irá aparecer aqui!</h1>
+        <section className="tela border-2 border-slate-950  ">
+          <h1 className="text-center text-md text-white md:text-2xl">Sua operação irá aparecer aqui!</h1>
           <div className={operVisivel  === 1 ? 'mostrando' : 'escondida'} id="tela1">
               <p>
                 Saldo
