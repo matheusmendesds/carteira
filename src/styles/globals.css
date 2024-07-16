@@ -1,9 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-body {
-    background-color:  grey;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+body, html {
+    background-color: rgb(51, 47, 47);
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.main-container {
+    min-height: 80vh; 
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Cria duas colunas com largura igual */
+    
+}
+
 .botao {
     background-color: black;
     color: white;
@@ -16,18 +33,34 @@ body {
     background-color: rgba(0, 0, 0, 0.418);
 }
 .btnInicio {
-    background-color: white;
+    background-color: gray;
     margin: 5px;
     width: 20vw;
-    height: 30vh;
+    height: 20vh;
     border-radius: 20px;
     border: 2px solid black;
 }
 .btnInicio:hover {
-    background-color: black;
-    color: white;
-    border: 3px solid rgb(170, 160, 160);
+    background-color: white;
+    color: black;
+    border: 3px solid black;
 }
 .esconder {
     display: none;
+}
+
+.escondida {
+    display: none;
+}
+
+.mostrando {
+    display: block;
+    margin: auto;
+    border: 1px solid black;
+    width: 300px;
+    padding: 10px;
+}
+.imagem {
+    
+    margin: auto;
 }

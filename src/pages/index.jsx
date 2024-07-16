@@ -1,7 +1,18 @@
 import React, { useState } from "react";
-import Navbar from "@/components/navbar";
+import { Quicksand , Zilla_Slab} from 'next/font/google'
+import Image from "next/image";
+
+const quicksand = Quicksand({
+  weight: '400',
+  subsets: ['latin'], 
+  display:'swap',
+})
+
+
 
 export default function Home() {
+  
+  
   //RETIRAR DINHEIRO
   const [retirar, setRetirar] = useState(0)
   function handleRetirar(e) {
@@ -30,6 +41,7 @@ export default function Home() {
     const histDep = document.getElementById('historicoDeposito')
     histDep.innerHTML += `<p>Você depositou R$${deposito}</p>`
     alert(`Você depositou R$${deposito},00`)
+
   }
 
   //CONSULTAR SALDO
@@ -38,6 +50,7 @@ export default function Home() {
   function consSaldo() {
     const consSaldo = document.getElementById('saldo')
     consSaldo.innerHTML = `O seu saldo é R$${saldo},00`
+    
   }
 
   //HISTORICO DE TRANSAÇÕES
@@ -47,36 +60,57 @@ export default function Home() {
     mostrarDep.classList.toggle("esconder")
     
   }
+
+  // Função para mostrar operações
+  const [operVisivel, setOperVisivel] = useState(null);
+
+  const operar = (num) => {
+    setOperVisivel(num)
+  }
   
   return (
-    <main>
-      <Navbar/>
-      <h1>Carteira</h1>
-      <div>
-        <p>Saldo</p>
-        <div id="saldo">
+    <>
+        <section>
+          <div>
+            <button onClick={() => operar(1)} className="btnInicio"><Image src="/images/saldo.png" width={40} height={40} className="imagem"/>Saldo</button>
+            <button onClick={() => operar(2)} className="btnInicio"><Image src="/images/dinheiro.png" width={40} height={40} className="imagem"/>Depositar</button>
+            <button onClick={() => operar(3)} className="btnInicio"><Image src="/images/retirar.png" width={40} height={40} className="imagem"/>Retirar</button>
+            <button onClick={() => operar(4)} className="btnInicio"><Image src="/images/historico.png" width={40} height={40} className="imagem"/> Sua Conta</button>
+          </div>
 
-        </div>
-        <button className="botao" onClick={consSaldo}>Saldo</button>
-      </div>
-      <div>
-        Deposito:<input type="number" value={deposito} onChange={handleChange} max={200} min={1}></input>
-        <p>O total de deposito é:{deposito},00</p>
-        <button className="botao" onClick={handleDeposito}>Depositar</button>
-      </div>
-      <div>
-        Retirar:<input type="number" value={retirar} onChange={handleRetirar} max={200} min={1}></input>
-        <p>Retirar R${retirar},00</p>
-        <button className="botao" onClick={handlePag}>Retirar</button>
-      </div>
-      <section>
-        <h1>historico</h1>
-        <button className="botao" onClick={mostrar}>mostrar</button>
-        
-        <div id="historicoDeposito" className="esconder">Aqui esta seu historico</div>
-      </section>
+        </section>
 
-    </main>
+        <section className=" border-2 border-slate-950 bg-gray-500 ">
+          <h1 className="text-center text-3xl">Sua operação irá aparecer aqui!</h1>
+          <div className={operVisivel  === 1 ? 'mostrando' : 'escondida'} id="tela1">
+              <p>
+                Saldo
+              </p>
+              <div id="saldo"> 
+              </div>
+              <button className="botao" onClick={consSaldo}>Saldo</button>
+          </div>
+          
+          <div className={operVisivel  === 2 ? 'mostrando' : 'escondida'} id="tela2">
+              Deposito:<input type="number" value={deposito} onChange={handleChange} max={200} min={1}></input>
+              <p>O total de deposito é:{deposito},00</p>
+              <button className="botao" onClick={handleDeposito}>Depositar</button>
+          </div>
+          
+          <div className={operVisivel  === 3 ? 'mostrando' : 'escondida'} id="tela3">
+              Retirar:<input type="number" value={retirar} onChange={handleRetirar} max={200} min={1}></input>
+              <p>Retirar R${retirar},00</p>
+              <button className="botao" onClick={handlePag}>Retirar</button>
+          </div>
+          
+          <div className={operVisivel  === 4 ? 'mostrando' : 'escondida'} id="tela4">
+              <h1>Historico</h1>
+              <button className="botao" onClick={mostrar}>mostrar</button>
+              <div id="historicoDeposito" className="esconder">Aqui esta seu historico</div>
+          </div>
+        </section>
+
+    </>
   )
   
 }
