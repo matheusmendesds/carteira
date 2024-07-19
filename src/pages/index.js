@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Quicksand } from 'next/font/google'
 import Image from "next/image";
-import Link from "next/link";
 
 const quicksand = Quicksand({
   weight: '400',
@@ -17,31 +16,49 @@ export default function Home() {
   //RETIRAR DINHEIRO
   const [retirar, setRetirar] = useState(0)
   function handleRetirar(e) {
-    setRetirar(e.target.value);
+    
+      setRetirar(e.target.value);
+    
   }
   //Função para retirar dinheiro
   function handlePag(e) {
-    setSaldo(saldo - Number(retirar))
-    e.preventDefault();
-    const histDep = document.getElementById('historicoDeposito')
-    histDep.innerHTML += `<p>Você retirou R$${retirar}</p>`
-    alert(`Você retirou R$${retirar},00`)
+      
+    if (retirar <= 0 ) {
+      alert('Insira um valor maior que zero para retirar')
+    }else if (retirar > saldo) {
+        alert('Saldo Insuficiente')
+    } else {
+        setSaldo(saldo - Number(retirar))
+        e.preventDefault();
+        const histDep = document.getElementById('historicoDeposito')
+        histDep.innerHTML += `<p>Você retirou R$${retirar}</p>`
+        alert(`Você retirou R$${retirar},00`)
+    } 
   }
 
   //DEPOSITO DINHEIRO
   const [deposito, setDeposito] = useState(0)
   //Função que acompanha a mudança da variavel Deposito
   function handleChange(e) {
-    setDeposito(e.target.value);
+    if (e.target.value > 200) {
+      alert('Limite de deposito excedido')
+    } else {
+      setDeposito(e.target.value)
+    }
   }
 
   //Função para somar o Deposito com o saldo
   function handleDeposito(e) {
-    setSaldo(saldo + Number(deposito))
-    e.preventDefault();
-    const histDep = document.getElementById('historicoDeposito')
-    histDep.innerHTML += `<p>Você depositou R$${deposito}</p>`
-    alert(`Você depositou R$${deposito},00`)
+    if(deposito > 0) {
+      setSaldo(saldo + Number(deposito))
+      e.preventDefault();
+      const histDep = document.getElementById('historicoDeposito')
+      histDep.innerHTML += `<p>Você depositou R$${deposito}</p>`
+      alert(`Você depositou R$${deposito},00`)
+    } else {
+      alert('Isira um valor entre 1 e 200')
+    }
+    
 
   }
 
@@ -71,7 +88,7 @@ export default function Home() {
   
   return (
     <>
-        <section className="ml-2 text-center">
+        <section className="ml-2 mr-2 text-center border-2 border-slate-950">
           <h1 className=" text-md text-white md:text-2xl">Escolha sua operação</h1>
           <div>
             <button onClick={() => operar(1)} className="btnInicio"><Image src="/images/imgnav.png" width={40} height={40} alt="Saldo" className="imagem"/>Saldo</button>
@@ -82,7 +99,7 @@ export default function Home() {
 
         </section>
 
-        <section className="tela border-2 border-slate-950  ">
+        <section className="tela border-2 border-slate-950 mr-2">
           <h1 className="text-center text-md text-white md:text-2xl">Sua operação irá aparecer aqui!</h1>
           <div className={operVisivel  === 1 ? 'mostrando' : 'escondida'} id="tela1">
               <p>
