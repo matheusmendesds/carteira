@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Head from "next/head";
 import { Zilla_Slab } from "next/font/google";
@@ -13,7 +12,6 @@ export default function Layout({children}){
             <Head>
                 
             </Head>
-            <Navbar/>
             <main className={`main-container ${zilla.className}`}>{children}</main>
             <Footer/>
         </>
