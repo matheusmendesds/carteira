@@ -1,7 +1,7 @@
-import Navbar from '@/components/Navbar'
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Head from "next/head";
-import { Zilla_Slab } from "next/font/google"
+import { Zilla_Slab } from "next/font/google";
 const zilla = Zilla_Slab({
     weight: '400',
     subsets: ['latin'], 

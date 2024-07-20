@@ -1,7 +1,6 @@
-export default function Navbar(){
+export default function Navbar() {
     return(
-        <nav className='m-2'>
-        </nav>
-        
+        <div className='m-2'>
+        </div>  
     )
 }
