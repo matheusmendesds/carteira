@@ -56,7 +56,7 @@ export default function Home() {
       histDep.innerHTML += `<p>Você depositou R$${deposito}</p>`
       alert(`Você depositou R$${deposito},00`)
     } else {
-      alert('Isira um valor entre 1 e 200')
+      alert('Insira um valor entre 1 e 200')
     }
     
 
